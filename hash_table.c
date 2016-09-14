@@ -4,44 +4,30 @@
 #include <math.h>
 
 #include "hash_table.h"
-#include "funciones.h"
 
 
 /*Crea el espacio en memoria de la tabla*/
 hash_table*crear_tabla()
 {
-        int pos;
         hash_table*nueva = calloc(1,sizeof(hash_table));
+
+        /*Aritmetica*/
+        insertar( nueva, SUM, sumar);
+        insertar( nueva, RES, restar);
+        insertar( nueva, MUL, multiplicar);
+        insertar( nueva, DIV, quotient);
+        insertar( nueva, MOD, modulo);
+        /*Comparativa*/
+        insertar( nueva, IGUAL, igual);
+        insertar( nueva, MAYOR, mayor);
+        insertar( nueva, MENOR, menor);
+        insertar( nueva, MAYOR_IGUAL, mayor_igual);
+        insertar( nueva, MENOR_IGUAL, menor_igual);
+        /*Logica*/
+        insertar( nueva, AND, and);
+        insertar( nueva, OR, or);
+        insertar( nueva, NOT, not);
         
-        //~ pos = codigo_hash("+")%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = sumar;
-        //~ pos = codigo_hash( "-" )%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = restar;
-        //~ pos = codigo_hash("*")%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = multiplicar;
-        //~ pos = codigo_hash( "/" )%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = quotient;
-        //~ pos = codigo_hash("%")%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = modulo;
-
-        //~ pos = codigo_hash( "=" )%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = igual;
-        //~ pos = codigo_hash(">")%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = mayor;
-        //~ pos = codigo_hash( "<" )%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = menor;
-        //~ pos = codigo_hash(">=")%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = mayor_igual;
-        //~ pos = codigo_hash( "<=" )%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = menor_igual;
-
-        //~ pos = codigo_hash( "and" )%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = menor_igual;
-        //~ pos = codigo_hash( "or" )%CASILLAS;
-        //~ *( nueva->tabla + ( pos ) ) = menor_igual;
-        //~ pos = codigo_hash( "not" )%CASILLAS;
-        //~ nueva->tabla[ pos ] = menor_igual;
-
         return nueva;
 }
 
@@ -75,17 +61,16 @@ int codigo_hash(char*clave)
 
 
 /*Inserta punteros a funciones*/
-void insertar( hash_table*hash, char*llave, int(funcion)(int,int) )
+void insertar( hash_table*hash, char*llave, f_ptr funcion )
 {
-        int posicion = codigo_hash( llave );
+        int posicion = codigo_hash( llave )%CASILLAS;
         hash->tabla[posicion] = funcion;
 }
 
 
 /*Devuelve la funcion donde deberia de estar en la tabla*/
-int buscar_posicion( char*llave )
+f_ptr buscar_posicion( hash_table*hash, char*llave )
 {
-        int valor_llave = codigo_hash( llave );
-
-        return valor_llave%CASILLAS;
+        int posicion = codigo_hash( llave )%CASILLAS;
+        return hash->tabla[posicion];
 }
