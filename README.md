@@ -1,4 +1,5 @@
-*Shell Lisp*
+- **Shell Lisp** -
+
 Construir un intérprete de expresiones del lenguaje de 
 programación funcional Lisp utilizando C.
 
@@ -18,3 +19,5 @@ programación funcional Lisp utilizando C.
 *Nota:* Las funciones deben trabajar de forma anidada,
         sobre literales o expresiones.
         Salida --> Ctrl+D
+- **Compilar** -
+$make
