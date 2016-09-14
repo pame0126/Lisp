@@ -1,27 +1,27 @@
 **Shell Lisp**
-- **Descripción**
+- Descripción
 Construir un intérprete de expresiones del lenguaje de 
 programación funcional Lisp utilizando C.
 
-        *Valores*
+        **Valores**
          - Numeros Naturales.
          - Boleanos --> #t #f
 
-         *Funciones Aritmetica*
+        **Funciones Aritmetica**
            +, -, *, modulo, quotient.
 
-         *Funciones Relacion*
+        **Funciones Relacion**
            =, <, >, <=, >=.
 
-         *Funciones Logicas*
+        **Funciones Logicas**
            and, or, not.
 
      Nota: Las funciones deben trabajar de forma anidada,
         sobre literales o expresiones.
         Salida --> Ctrl+D
 
-- *Compilar*
+- Compilar
   $ make
 
-- *Compilar*
+- Compilar
   $ ./clisp
