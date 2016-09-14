@@ -3,7 +3,6 @@
 #include "operaciones.h"
 
 
-
 void inicializar_punteros()
 {
         /*aritmetica*/
@@ -13,14 +12,14 @@ void inicializar_punteros()
 		quotient = division;
 		modulo = mod;
 		/*comparacion*/
-		igual = igual_que;
-		mayor = mayor_que;
-		menor = menor_que;
-		mayor_igual = mayor_igual_que;
+		igual = (f_ptr)igual_que;
+		mayor = (f_ptr)mayor_que;
+		menor = (f_ptr)menor_que;
+		mayor_igual = (f_ptr)mayor_igual_que;
         /*logica*/
-        and = and_;
-        or = or_;
-        not = not_;
+        and = (f_ptr)and_;
+        or = (f_ptr)or_;
+        not = (f_ptr)not_;
 }
 
 
@@ -60,45 +59,49 @@ int mod(int op1, int op2)
 }
 
 
+
 /**Comparacion**/
 
-int igual_que(int op1, int op2)
+bool igual_que(int op1, int op2)
 {
         return (op1 == op2)? true:false;
 }
 
-int mayor_que(int op1, int op2){
+bool mayor_que(int op1, int op2)
+{
         return (op1 > op2)? true:false;
 }
 
-int menor_que(int op1, int op2){
+bool menor_que(int op1, int op2)
+{
         return (op1 < op2)? true:false;
 }
 
-int mayor_igual_que(int op1, int op2)
+bool mayor_igual_que(int op1, int op2)
 {
         return (op1 >= op2)? true:false;
 }
 
-int menor_igual_que(int op1, int op2)
+bool menor_igual_que(int op1, int op2)
 {
         return (op1 <= op2)? true:false;
 }
 
 
+
 /**Logicas**/
 
-int and_(int op1, int op2)
+bool and_(int op1, int op2)
 {
         return (op1 && op2)? true:false;
 }
 
-int or_(int op1, int op2)
+bool or_(int op1, int op2)
 {
         return (op1 || op2)? true:false;
 }
 
-int not_(int op1, int op2)
+bool not_(int op1, int op2)
 {
         return ( !op1 )? true:false;
 }

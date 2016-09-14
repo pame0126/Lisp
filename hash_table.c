@@ -51,7 +51,7 @@ int codigo_hash(char*clave)
 
         while(i < n)//de i hasta n-1
         {
-                valor+=*(clave+i)*(int)pow((double)31,(double)resta-i);
+                valor+=*( clave + i )*(int)pow( (double)31, (double)resta - i );
                 i++;
         }
 
@@ -64,7 +64,7 @@ int codigo_hash(char*clave)
 void insertar( hash_table*hash, char*llave, f_ptr funcion )
 {
         int posicion = codigo_hash( llave )%CASILLAS;
-        hash->tabla[posicion] = funcion;
+        *( hash->tabla + posicion ) = funcion;
 }
 
 
@@ -72,5 +72,5 @@ void insertar( hash_table*hash, char*llave, f_ptr funcion )
 f_ptr buscar_posicion( hash_table*hash, char*llave )
 {
         int posicion = codigo_hash( llave )%CASILLAS;
-        return hash->tabla[posicion];
+        return *( hash->tabla + posicion );
 }

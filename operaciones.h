@@ -12,6 +12,7 @@ typedef enum { false = 0, true = 1 } bool;
 
 /*****Definicion de funciones*****/
 
+
 /**Aritmeticas*/
 
 /*Suma de dos enteros*/
@@ -29,23 +30,25 @@ int division(int op1, int op2);
 /*Modulo de dos enteros*/
 int mod(int op1, int op2);
 
+
 /**Comparacion**/
 
-int igual_que(int op1, int op2);
+bool igual_que(int op1, int op2);
 
-int mayor_que(int op1, int op2);
+bool mayor_que(int op1, int op2);
 
-int menor_que(int op1, int op2);
+bool menor_que(int op1, int op2);
 
-int mayor_igual_que(int op1, int op2);
+bool mayor_igual_que(int op1, int op2);
 
-int menor_igual_que(int op1, int op2);
+bool menor_igual_que(int op1, int op2);
+
 
 /**Logicas**/
 
-int and_(int op1, int op2);
+bool and_(int op1, int op2);
 
-int or_(int op1, int op2);
+bool or_(int op1, int op2);
 
-int not_(int op1, int op2);
+bool not_(int op1, int op2);
 #endif

@@ -9,9 +9,8 @@ int main()
         hash_table*nuevo = crear_tabla();
 
         int pos = (buscar_posicion(nuevo,AND))(3,0);
-        
+
         printf("%d\n",pos);
-        //~ printf("+ %d\n", );
         return 0;
 }
 

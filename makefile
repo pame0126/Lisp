@@ -1,5 +1,4 @@
 
-
 SALIDA = clisp
 
 ARCHIVOS = hash_table.h hash_table.c funciones.h operaciones.h operaciones.c
