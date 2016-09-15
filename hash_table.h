@@ -4,24 +4,23 @@
 
 #define CASILLAS 100
 
-/*Macros, punteros y tipo de funciones con ptr*/
-#include "funciones.h"
 
 /*Estructura tabla hash*/
 typedef struct hash_table
 {
-         f_ptr tabla[CASILLAS];
+         void*(*tabla);//cambiar puntero void
+         char*llaves[CASILLAS];
 }hash_table;
 
 
-hash_table*crear_tabla();
+hash_table*hash_crear(void*tipo);
 
-void eliminar_tabla(hash_table*tabla);
+void hash_destruir(hash_table*tabla);
 
-int codigo_hash(char*clave);
+int hash_codigo(char*clave);
 
-void insertar(hash_table*tabla,char*llave, f_ptr funcion);
+void hash_insertar(hash_table*tabla,char*llave, void*funcion);
 
-f_ptr buscar_posicion(hash_table*tabla,char*llave);
+void*hash_buscar(hash_table*tabla,char*llave);
 
 #endif

@@ -1,10 +1,13 @@
+SALIDA = ExprLisp
 
-SALIDA = clisp
+HASH = hash_table.h hash_table.c 
+FUNC = funciones.h funciones.c
+OPERA = operaciones.h operaciones.c
+ARBOL = arbol_binario.h arbol_binario.c
 
-ARCHIVOS = hash_table.h hash_table.c funciones.h operaciones.h operaciones.c
-
+ARCHIVOS = $(FUNC) $(HASH) $(OPERA) $(ARBOL)
 all:
-	gcc -std=c11 $(ARCHIVOS) main.c -lm -o $(SALIDA)
+	gcc -std=c11  main.c $(ARCHIVOS) -lm -o $(SALIDA)
 #para que sirva math.h usar -lm despues de los archivos
 run:
 	./$(SALIDA)

@@ -1,7 +1,8 @@
 #ifndef FUNCIONES_H
 #define FUNCIONES_H
 
-
+#include "hash_table.h"
+#include "operaciones.h"
 
 /*Se imprimen estos valores*/
 #define f "#f"
@@ -24,6 +25,7 @@
 
 /*Define puntero tipo funcion*/
 typedef int(*f_ptr)(int,int);
+
 
 /****Punteros a funciones****/
 
@@ -59,5 +61,13 @@ int (*not)(int,int);//deberia de recibir solo un argumento
 int (*and)(int,int);
 
 int (*or)(int,int);
+
+
+/*Asigna a los ptr_funcion una funcion definida*/
+void f_ptr_inicializa_operacion();
+
+/*Inserta en la tabla hash las funciones que va a usar*/
+void f_ptr_inserciones_hash(hash_table*hash);
+
 
 #endif

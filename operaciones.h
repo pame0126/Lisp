@@ -2,15 +2,8 @@
 #ifndef OPERACIONES_H
 #define OPERACIONES_H
 
-#include "funciones.h"
-
-
-/*Asignacion de punteros funciones*/
-void inicializar_punteros();
 
 typedef enum { false = 0, true = 1 } bool;
-
-/*****Definicion de funciones*****/
 
 
 /**Aritmeticas*/
@@ -51,4 +44,5 @@ bool and_(int op1, int op2);
 bool or_(int op1, int op2);
 
 bool not_(int op1, int op2);
+
 #endif

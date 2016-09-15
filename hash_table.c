@@ -7,41 +7,23 @@
 
 
 /*Crea el espacio en memoria de la tabla*/
-hash_table*crear_tabla()
+hash_table*hash_crear(void*tipo)
 {
-        hash_table*nueva = calloc(1,sizeof(hash_table));
-
-        /*Aritmetica*/
-        insertar( nueva, SUM, sumar);
-        insertar( nueva, RES, restar);
-        insertar( nueva, MUL, multiplicar);
-        insertar( nueva, DIV, quotient);
-        insertar( nueva, MOD, modulo);
-        /*Comparativa*/
-        insertar( nueva, IGUAL, igual);
-        insertar( nueva, MAYOR, mayor);
-        insertar( nueva, MENOR, menor);
-        insertar( nueva, MAYOR_IGUAL, mayor_igual);
-        insertar( nueva, MENOR_IGUAL, menor_igual);
-        /*Logica*/
-        insertar( nueva, AND, and);
-        insertar( nueva, OR, or);
-        insertar( nueva, NOT, not);
-        
+        hash_table*nueva = calloc(1, sizeof(hash_table));
+        printf("crea bien,");
+        nueva->tabla = malloc(CASILLAS*sizeof(tipo));
+        printf("crea bien,");
         return nueva;
 }
 
-
 /*Elimina la tabla liberando el espacio*/
-void eliminar_tabla(hash_table*hash)
+void hash_destruir(hash_table*hash)
 {
-        free( hash->tabla );
-        free( hash );       //libera espacio
+        free(hash);       //libera espacio
 }
 
-
 /*Devuelve el codigo hash calculado por el string clave*/
-int codigo_hash(char*clave)
+int hash_codigo(char*clave)
 {
         int i = 0;
         int n = strlen(clave);
@@ -51,26 +33,77 @@ int codigo_hash(char*clave)
 
         while(i < n)//de i hasta n-1
         {
-                valor+=*( clave + i )*(int)pow( (double)31, (double)resta - i );
+                valor+=*(clave+i)*(int)pow((double)31,(double)resta-i);
                 i++;
         }
 
         return valor;
 }
 
-
-
-/*Inserta punteros a funciones*/
-void insertar( hash_table*hash, char*llave, f_ptr funcion )
+/*localizar la posicion mas proxima vacia*/
+int hash_localizar_pos_vacio(hash_table*hash, char*llave, int posicion)
 {
-        int posicion = codigo_hash( llave )%CASILLAS;
-        *( hash->tabla + posicion ) = funcion;
+        for(int i = 0; i < CASILLAS ;i++)
+        {
+                posicion = (posicion+i)%CASILLAS;
+                /*Si encontro una posicion vacia*/
+                if( *(hash->tabla + posicion) != NULL )
+                {
+                        return posicion;
+                }
+        }
 }
 
+/*Inserta punteros a funciones*/
+void hash_insertar( hash_table*hash, char*llave, void* funcion )
+{
+        int posicion = hash_codigo(llave)%CASILLAS;
+
+        /*si esta vacia en la tabla, es nueva y la inserta*/
+        if( *(hash->tabla + posicion) != NULL )
+        {
+                *(hash->tabla + posicion) = funcion;
+                *(hash->llaves + posicion) = llave;
+        }
+        /*Si es igual el nombre de la misma llave,le cae encima
+         * la funcion*/
+        else if( !strcmp( *(hash->llaves + posicion), llave) )
+        {
+                *(hash->tabla + posicion) = funcion;
+        }
+        /*Si la llave resulto igual y no tiene los mismos caracteres
+         * -->busca otra posicion vacia mas proxima*/
+        else
+        {
+                posicion = hash_localizar_pos_vacio(hash,llave,posicion+1);
+                *(hash->tabla + posicion) = funcion;
+                *(hash->llaves + posicion) = llave;
+        }
+}
+
+/*localizar la posicion donde esta la llave*/
+int hash_localizar_pos_llave(hash_table*hash, char*llave, int posicion)
+{
+        for(int i = 0; i < CASILLAS ;i++)
+        {
+                posicion = (posicion+i)%CASILLAS;
+                /*Si encontro la posicion de la llave*/
+                if( !strcmp( *(hash->llaves + posicion), llave) )
+                {
+                        return posicion;
+                }
+        }
+}
 
 /*Devuelve la funcion donde deberia de estar en la tabla*/
-f_ptr buscar_posicion( hash_table*hash, char*llave )
+void*hash_buscar( hash_table*hash, char*llave )
 {
-        int posicion = codigo_hash( llave )%CASILLAS;
-        return *( hash->tabla + posicion );
+        int posicion = hash_codigo(llave)%CASILLAS;
+        /*Si la llave es igual al de la posicion en arreglo*/
+        if( !strcmp( *(hash->llaves + posicion), llave) )
+        {
+                posicion = hash_localizar_pos_llave(hash,llave,posicion+1);
+                return *(hash->tabla + posicion);
+        }
+        return *(hash->tabla + posicion);
 }
