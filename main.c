@@ -1,20 +1,24 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include "funciones.h"
-#include "hash_table.h"
+//~ #include "hash_table.h"
+
+int sumasss(int a,int b){
+	return a+b;
+}
+f_ptr add;
 
 int main()
 {
-        //~ void*tipo = f_ptr;
-        hash_table*hash = hash_crear(f_ptr);
-        printf("crea bien,");
-        //~ f_ptr_inicializa_operacion();
-        //~ printf("inicia bien,");
-        //~ f_ptr_inserciones_hash(hash);
-        //~ printf("inserciona bien,");
-        //~ int respuesta = ((f_ptr)hash_buscar(hash,DIV))(12,4);
+	/*Funciona void* con f_ptr*/
+        add = sumasss;
+        void*arr = (void*)malloc(sizeof(f_ptr));
+        arr = add;
+        f_ptr pruea = (f_ptr)(arr);
         
-        //~ printf("12 / 4 = %d\n",respuesta);
+        printf("%d\n",pruea(3,3));
+        /*++++++++++++++++*/
         return 0;
 }
 
