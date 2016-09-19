@@ -2,22 +2,21 @@
 #include <stdlib.h>
 
 #include "funciones.h"
-//~ #include "hash_table.h"
-
-int sumasss(int a,int b){
-	return a+b;
-}
-f_ptr add;
+#include "hash_table.h"
 
 int main()
 {
-	/*Funciona void* con f_ptr*/
-        add = sumasss;
-        void*arr = (void*)malloc(sizeof(f_ptr));
-        arr = add;
-        f_ptr pruea = (f_ptr)(arr);
+        /*Inicializar siempre los punteros a funciones,
+         *  sino da error 0 de la funcion no definida*/
+        f_ptr_inicializa_operacion();
+
+        hash_table *hash = hash_crear();
         
-        printf("%d\n",pruea(3,3));
+        hash_insertar(hash, MOD, modulo);
+
+        f_ptr pruea = (f_ptr)hash_buscar(hash,MOD);
+        int respuesta = pruea(7,7);
+        printf("%d\n", respuesta);
         /*++++++++++++++++*/
         return 0;
 }
