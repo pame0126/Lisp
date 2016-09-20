@@ -18,6 +18,7 @@ void f_ptr_inicializa_operacion()
 		mayor = (f_ptr)mayor_que;
 		menor = (f_ptr)menor_que;
 		mayor_igual = (f_ptr)mayor_igual_que;
+		menor_igual = (f_ptr)menor_igual_que;
         /*logica*/
         and = (f_ptr)and_;
         or = (f_ptr)or_;
