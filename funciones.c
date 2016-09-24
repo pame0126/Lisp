@@ -1,7 +1,7 @@
 #include <stdio.h>
+#include <string.h>
 
 #include "funciones.h"
-
 
 
 /*Asigna a los ptr_funcion una funcion definida*/
@@ -44,4 +44,21 @@ void f_ptr_inserciones_hash(hash_table*hash)
         hash_insertar(hash, AND, and);
         hash_insertar(hash, OR, or);
         hash_insertar(hash, NOT, not);
+}
+
+/*Verifica si el operador es unario*/
+int f_ptr_es_operador_unario(char*operador)
+{
+        return ( !strcmp(operador, NOT) )?1:0;
+}
+
+/*Verifica que sea numero*/
+int f_ptr_es_numero(char*elemento){
+	int bandera;
+	
+	for(int i = 0; elemento[i] != '\0' && bandera;i++)
+	{
+		bandera = ( elemento[i]-48 >= 0 && elemento[i]-48 <= 9 )?1:0;
+	}
+	return bandera;
 }

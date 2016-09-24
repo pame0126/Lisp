@@ -70,4 +70,9 @@ void f_ptr_inicializa_operacion();
 void f_ptr_inserciones_hash(hash_table*hash);
 
 
+/*Verifica si el operador es unario*/
+int f_ptr_es_operador_unario(char*operador);
+
+/*Verifica que sea numero*/
+int f_ptr_es_numero(char*elemento);
 #endif

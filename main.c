@@ -1,34 +1,48 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 #include "funciones.h"
 #include "hash_table.h"
-#include "arbol_binario.h"
+#include "arbol_expresion.h"
+
+#define SIZE_EXP 100// tamaño maximo de la expresion
+
+void leerLinea(char*linea)
+{
+        char caracter;
+        int i = 0;
+        scanf("%c",&caracter);
+        while(caracter != '\n' && caracter != '\0')
+        {
+                *(linea + i) = caracter;
+                scanf("%c",&caracter);
+                i++;
+        }
+        *(linea + i) = '\0';
+}
+
 
 int main()
 {
-        //~ /*Inicializar siempre los punteros a funciones,
-         //~ *  sino da error 0 de la funcion no definida*/
-        f_ptr_inicializa_operacion();
+        /*Inicializar siempre los punteros a funciones,
+         *  sino da error 0 de la funcion no definida*/
+        //~ f_ptr_inicializa_operacion();
 
-        //~ hash_table *hash = hash_crear();
-        
-        //~ f_ptr_inserciones_hash(hash);
-        //~ f_ptr pruea = (f_ptr)hash_buscar(hash,NOT);
-        //~ int respuesta = pruea(7,0);
-        //~ printf("%d\n", respuesta);
-        /*++++++++++++++++*/
-        arbol*expr = arbol_crear();
-        int num = 31;
-        void*valor = &num;
-        
-        expr->inicio = nodo_crear(31,valor);
-        
-        nodo_insertar_der(expr->inicio, nodo_crear(1,"3"));
-        nodo_insertar_izq(expr->inicio, nodo_crear(4,restar));
-        
-		printf("%d\n",nodo_es_hoja(expr->inicio));
+        char*expresion = (char*)calloc(SIZE_EXP, sizeof(char));
 
+        //~ while(1)
+        //~ {
+                //~ printf("lisp> ");
+        leerLinea(expresion);//lee una linea
+
+        int largo = strlen(expresion);
+        char**res = split_plabra(expresion, largo);
+		arbol*p = genera_arbol_expresion( res );
+		postorden(p->inicio);
+		printf("\n");
+		//~ printf("%s - %s %s\n", (char*)(p->inicio)->elemento, (char*)(p->inicio->izq)->elemento,(char*)(p->inicio->der)->elemento);
+        
         return 0;
 }
 

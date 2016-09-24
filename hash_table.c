@@ -89,6 +89,7 @@ int hash_localizar_pos_llave(hash_table*hash, char*llave, int posicion)
                         return posicion;
                 }
         }
+        return -1;
 }
 
 /*Devuelve la funcion donde deberia de estar en la tabla*/
@@ -104,7 +105,7 @@ void*hash_buscar(hash_table*hash, char*llave)
         else
         {
                 posicion = hash_localizar_pos_llave( hash, llave, posicion+1);
-                return hash->tabla[posicion];
+                return (posicion > -1)?hash->tabla[posicion]:NULL;
         }
 
 }

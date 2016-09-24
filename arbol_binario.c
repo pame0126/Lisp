@@ -85,7 +85,6 @@ int nodo_hijo_izq_es_hoja(nodo*padre)
 /*Destruir nodo*/
 void nodo_destruir(nodo*actual)
 {
-        //~ free(actual->elemento)
         free(actual);
         actual = NULL;
 }
@@ -94,50 +93,9 @@ void nodo_destruir(nodo*actual)
 void arbol_destruir_raiz(arbol*raiz)
 {
         free(raiz);
+        raiz = NULL;
 }
 
 //~ /*Destruir todo el arbol*/
 //~ void arbol_destruir_todo(arbol*raiz)
-//~ {
-        //~ nodo*actual = raiz->inicio;
-        //~ nodo*pila[100];// = (nodo*)calloc(100, sizeof(nodo));
-        //~ int top = -1;
-        
-        //~ top++;
-        //~ pila[top] = actual;
 
-        //~ while( raiz->inicio != NULL )
-        //~ {
-				//~ printf("top %d - %d\n",top,actual->valor);
-                //~ if( nodo_es_hoja( actual ) )
-                //~ {
-                        //~ printf("%d\n", actual->valor);
-                        //~ nodo_destruir(actual);
-                        //~ pila[top] = NULL;
-                        //~ printf("%d\n", actual->valor);
-                        //~ --top;
-                        //~ printf("--top %d\n",top);
-
-                        //~ printf("%d\n", actual->valor);
-                //~ }
-                //~ else
-                //~ {		printf("insertar\n");
-                        //~ if( actual->izq != NULL )
-                        //~ {
-                                //~ ++top;
-                                //~ pila[top] = actual->izq;
-                                //~ printf("- %d\n", pila[top]->valor);
-                        //~ }
-                        //~ if( actual->der != NULL )
-                        //~ {
-                                //~ ++top;
-                                //~ pila[top] = actual->der;
-                                //~ printf("- %d\n", pila[top]->valor);
-                        //~ }
-                        //~ actual = (top > -1)?pila[top]:NULL;
-				//~ }
-				//~ actual = ( top > -1 )? pila[top] : NULL;
-        //~ }
-        //~ free(raiz->inicio);
-        //~ free(raiz);
-//~ }
