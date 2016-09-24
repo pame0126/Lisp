@@ -61,8 +61,8 @@ void nodo_destruir(nodo*actual);
 /*Destruir raiz el arbol*/
 void arbol_destruir_raiz(arbol*raiz);
 
-//~ /*Destruir todo el arbol*/
-//~ void arbol_destruir_todo(arbol*raiz);
+/*Destruir todo el arbol*/
+void arbol_destruir_todo(arbol*raiz);
 
 
 #endif

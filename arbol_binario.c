@@ -89,6 +89,7 @@ void nodo_destruir(nodo*actual)
         actual = NULL;
 }
 
+
 /*Destruir raiz el arbol*/
 void arbol_destruir_raiz(arbol*raiz)
 {
@@ -96,6 +97,32 @@ void arbol_destruir_raiz(arbol*raiz)
         raiz = NULL;
 }
 
-//~ /*Destruir todo el arbol*/
-//~ void arbol_destruir_todo(arbol*raiz)
+
+/*auxiliar que destruye el arbol recursivamente*/
+void aux_destruir_arbol(nodo*actual){
+        if(actual != NULL)
+        {
+                aux_destruir_arbol( actual->izq );
+                aux_destruir_arbol( actual->der );
+                
+                if( sizeof( actual->elemento ) > 1 )
+                {
+                        free(actual->elemento);
+                        actual->elemento = NULL;
+                }
+                free(actual);
+                actual = NULL;
+        }
+}
+
+
+/*Destruir todo el arbol*/
+void arbol_destruir_todo(arbol*raiz){
+        if( raiz->inicio != NULL )
+        {
+                aux_destruir_arbol(raiz->inicio);
+        }
+        free( raiz );
+        raiz = NULL;
+}
 

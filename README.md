@@ -24,4 +24,4 @@ programación funcional Lisp utilizando C.
   $ make
 
 - Compilar
-  $ ./clisp
+  $ ./ExprLisp

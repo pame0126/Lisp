@@ -4,17 +4,32 @@
 #include "arbol_binario.h"
 #include "funciones.h"
 
-char**split_plabra(char*palabra, int len);
+/*Divide las expresiones es arreglos*/
+char**split_expresion(char*palabra, int len);
 
-void destruir_split_palabra(char**split);
+/*Libera la memoria que se uso en el split*/
+void destruir_split_expresion(char**split);
 
-//~ void aux_dividir_operandos_binario(char***operandos, char**ecuacion, int j, int i);
+/*Es una sub-operacion de las funciones: 
+ * - char***dividir_operandos_binario
+ * - char**expresion_dividir_operador_unario
+ * */
+void quitar_parentesis_operador(char**operandos, char**ecuacion, int i);
 
-void quitar_parentesis_operandor(char**operandos, char**ecuacion, int i);
-
+/*Separa los dos operadores de una operacion binaria*/
 char***dividir_operandos_binario(char**expresion);
 
+/*Da el operador de la operacion unaria - NOT*/
 char**expresion_dividir_operador_unario(char**ecuacion);
 
+/*Auxiliar de genera_arbol_expresion*/
+nodo*aux_genera_arbol_expresion(char**);
+
+/*Produce el arbol de expresion de la ecuacion*/
 arbol*genera_arbol_expresion(char**expresion);
+
+/*Recorreo el arbol generado imprimiendo sus valores
+ * en postorden*/
+void imprimir_arbol_postorden(nodo*);
+
 #endif

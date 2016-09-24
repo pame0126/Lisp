@@ -6,13 +6,17 @@
 #include "hash_table.h"
 #include "arbol_expresion.h"
 
-#define SIZE_EXP 100// tamaño maximo de la expresion
+// tamaño maximo de la entrada
+#define SIZE_EXP 100
 
+/*Lee linea de entrada*/
 void leerLinea(char*linea)
 {
         char caracter;
         int i = 0;
+        
         scanf("%c",&caracter);
+        
         while(caracter != '\n' && caracter != '\0')
         {
                 *(linea + i) = caracter;
@@ -29,19 +33,17 @@ int main()
          *  sino da error 0 de la funcion no definida*/
         //~ f_ptr_inicializa_operacion();
 
-        char*expresion = (char*)calloc(SIZE_EXP, sizeof(char));
+        char*linea = (char*)calloc(SIZE_EXP, sizeof(char));
 
-        //~ while(1)
-        //~ {
-                //~ printf("lisp> ");
-        leerLinea(expresion);//lee una linea
+        leerLinea( linea );//lee una linea
 
-        int largo = strlen(expresion);
-        char**res = split_plabra(expresion, largo);
-		arbol*p = genera_arbol_expresion( res );
-		postorden(p->inicio);
+        int largo = strlen( linea );
+        char**expresion = split_expresion( linea, largo);
+		arbol*raiz = genera_arbol_expresion( expresion );
+		
+		imprimir_arbol_postorden( raiz->inicio );
+		
 		printf("\n");
-		//~ printf("%s - %s %s\n", (char*)(p->inicio)->elemento, (char*)(p->inicio->izq)->elemento,(char*)(p->inicio->der)->elemento);
         
         return 0;
 }
