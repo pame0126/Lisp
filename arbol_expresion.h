@@ -32,4 +32,7 @@ arbol*genera_arbol_expresion(char**expresion);
  * en postorden*/
 void imprimir_arbol_postorden(nodo*);
 
+/*Resuelve el arbol*/
+int resolver_arbol_expresion(nodo*inicio, hash_table*operaciones);
+
 #endif

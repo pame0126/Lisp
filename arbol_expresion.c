@@ -21,13 +21,14 @@ char**split_expresion(char*palabra, int largo)
 
         int i = 0;//indice de la palabra q ingresa
         int j = 0;//indice del espacio que se crea
+        
 
         //obia los parentesis que estan en el principio de la expresion
         for(; palabra[i] == (char)40 ;i++,largo--);
 
         while( i < largo )
         {
-                i+=(palabra[i] == ' ')? 1 : 0;
+                //~ i+=(palabra[i] == ' ')? 1 : 0;
 
                 if( palabra[i] == 40 || palabra[i] == 41 )//si es uno de los parentesis
                 {
@@ -36,10 +37,14 @@ char**split_expresion(char*palabra, int largo)
                         actual[1] = '\0';
                         respuesta[top++] = actual;
                 }
+                else if( palabra[i] == ' ' )
+                {
+					i++;
+				}
                 else
                 {
                         actual = calloc(15, sizeof(char));
-                        j = 0;
+                        j = 0;//incide para actual
                         
                         while( bandera )
                         {
@@ -206,7 +211,7 @@ nodo*aux_genera_arbol_expresion(char**ecuacion)
 {
         if( f_ptr_es_numero(ecuacion[0]) )//si es numero la cadena
         {
-                return nodo_crear( atoi(ecuacion[0]), "#" );
+                return nodo_crear( atoi(ecuacion[0]), ecuacion[0] );
         }
 
         else if( f_ptr_es_operador_unario( ecuacion[0] ) )//si es el operador NOT, unario
@@ -251,12 +256,35 @@ void imprimir_arbol_postorden(nodo*raiz){
                 imprimir_arbol_postorden(raiz->izq);
                 imprimir_arbol_postorden(raiz->der);
 
-                if( ((char*)raiz->elemento)[0]=='#' ){//si es numero
-                        printf("%d ",raiz->valor);
-                }
-                else
-                {
-                        printf("%s ",(char*)raiz->elemento);
-                }
+                printf("%s ",(char*)raiz->elemento);
         }
+}
+
+
+int resolver_arbol_expresion( nodo*inicio, hash_table*tabla)
+{
+	/* si es un numero */
+	if( f_ptr_es_numero(inicio->elemento) )
+	{
+		return inicio->valor;
+	}
+	/*Si es operador de NOT*/
+	else if( f_ptr_es_operador_unario( inicio->elemento ) )
+	{
+		f_ptr operacion = hash_buscar( tabla, (char*)inicio->elemento);
+		
+		int numero = resolver_arbol_expresion( inicio->izq, tabla);
+		
+		return operacion( numero ,0);
+	}
+	/*Si es operador binario*/
+	else
+	{
+		f_ptr operacion = hash_buscar( tabla, (char*)inicio->elemento);
+		
+		int numero_izq = resolver_arbol_expresion( inicio->izq, tabla);
+		int numero_der = resolver_arbol_expresion( inicio->der, tabla);
+		
+		return operacion( numero_izq , numero_der );
+	}
 }

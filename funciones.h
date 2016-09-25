@@ -5,23 +5,23 @@
 #include "operaciones.h"
 
 /*Se imprimen estos valores*/
-#define f "#f"
-#define t "#t"
+#define false "#f"
+#define true "#t"
 
 /*Macros para simbolos de llaves en las funciones*/
-#define SUM "+"         //43
-#define RES "-"         //45
-#define MUL "*"         //42
-#define DIV "div"       //23
-#define MOD "mod"       //20
-#define IGUAL "="       //61
-#define MAYOR ">"       //62
-#define MENOR "<"       //60
-#define MAYOR_IGUAL ">="//23
-#define MENOR_IGUAL "<="//21
-#define AND "and"       // 7
-#define OR "or"         //25
-#define NOT "not"       //36
+#define SUM "+"
+#define RES "-"
+#define MUL "*"
+#define DIV "quotient"
+#define MOD "modulo"
+#define IGUAL "="
+#define MAYOR ">"
+#define MENOR "<"
+#define MAYOR_IGUAL ">="
+#define MENOR_IGUAL "<="
+#define AND "and"
+#define OR "or"
+#define NOT "not"
 
 /*Define puntero tipo funcion*/
 typedef int(*f_ptr)(int,int);
@@ -75,4 +75,11 @@ int f_ptr_es_operador_unario(char*operador);
 
 /*Verifica que sea numero*/
 int f_ptr_es_numero(char*elemento);
+
+/*Reotorna si el operador es un operador boleano*/
+int f_ptr_es_operador_boleano(char*elemento);
+
+/*Retorna el valor boleano del operador*/
+char*f_ptr_respuesta_operador_boleano(int valor);
+
 #endif

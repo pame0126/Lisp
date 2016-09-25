@@ -31,6 +31,7 @@ int hash_codigo(char*clave)
         while(i < n)//de i hasta n-1
         {
                 valor+=*(clave+i)*(int)pow((double)31,(double)resta-i);
+                valor%=CASILLAS;
                 i++;
         }
 
