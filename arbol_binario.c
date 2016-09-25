@@ -105,11 +105,6 @@ void aux_destruir_arbol(nodo*actual){
                 aux_destruir_arbol( actual->izq );
                 aux_destruir_arbol( actual->der );
                 
-                if( sizeof( actual->elemento ) > 1 )
-                {
-                        free(actual->elemento);
-                        actual->elemento = NULL;
-                }
                 free(actual);
                 actual = NULL;
         }

@@ -55,48 +55,48 @@ int f_ptr_es_operador_unario(char*operador)
 /*Verifica que sea numero*/
 int f_ptr_es_numero(char*elemento)
 {
-	int bandera = 1;
-	int len = strlen( elemento );
+        int bandera = 1;
+        int len = strlen( elemento );
 
-	for( int i = 0; i < len && bandera ;i++ )
-	{
-		bandera = ( elemento[i]-48 >= 0 && elemento[i]-48 <= 9 )?1:0;
-	}
-	return bandera;
+        for( int i = 0; i < len && bandera ;i++ )
+        {
+                bandera = ( elemento[i]-48 >= 0 && elemento[i]-48 <= 9 )?1:0;
+        }
+        return bandera;
 }
 
 
 /*Reotorna si el operador es un operador boleano*/
 int f_ptr_es_operador_boleano(char*elemento)
 {
-	int es_boleano = 0;
-	/*Es mayor o mayor igual*/
-	if( !strcmp( elemento, MAYOR ) || !strcmp( elemento, MAYOR_IGUAL ) )
-	{
-		es_boleano++;
-	}
-	/*Es menor o menor igual*/
-	else if( !strcmp( elemento, MENOR ) || !strcmp( elemento, MENOR_IGUAL ) )
-	{
-		es_boleano++;
-	}
-	/*Es igual o not*/
-	else if( !strcmp( elemento, IGUAL ) || !strcmp( elemento, NOT ) )
-	{
-		es_boleano++;
-	}
-	/*Es or o and*/
-	else if( !strcmp( elemento, OR ) || !strcmp( elemento, AND ) )
-	{
-		es_boleano++;
-	}
-	
-	return es_boleano;
+        int es_boleano = 0;
+        /*Es mayor o mayor igual*/
+        if( !strcmp( elemento, MAYOR ) || !strcmp( elemento, MAYOR_IGUAL ) )
+        {
+                es_boleano++;
+        }
+        /*Es menor o menor igual*/
+        else if( !strcmp( elemento, MENOR ) || !strcmp( elemento, MENOR_IGUAL ) )
+        {
+                es_boleano++;
+        }
+        /*Es igual o not*/
+        else if( !strcmp( elemento, IGUAL ) || !strcmp( elemento, NOT ) )
+        {
+                es_boleano++;
+        }
+        /*Es or o and*/
+        else if( !strcmp( elemento, OR ) || !strcmp( elemento, AND ) )
+        {
+                es_boleano++;
+        }
+
+        return es_boleano;
 }
 
 /*Retorna el valor boleano del operador*/
 char*f_ptr_respuesta_operador_boleano(int valor)
 {
-	return ( valor )? true: false;
+        return ( valor )? True: False;
 }
 

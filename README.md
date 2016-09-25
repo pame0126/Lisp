@@ -20,8 +20,10 @@ programación funcional Lisp utilizando C.
         sobre literales o expresiones.
         Salida --> Ctrl+D
 
-- Compilar
+- Compilar el Shell clisp
   $ make
+  o tambien con...
+  $ make shell
 
-- Compilar
+- Ejecutar el programa con..
   $ ./ExprLisp

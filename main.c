@@ -42,7 +42,7 @@ int main()
         arbol*raiz;
         int resultado;
         
-        
+        printf("lisp> ");
         linea = (char*)calloc(SIZE_EXP, sizeof(char));//linea donde guarda entrada
         leerLinea( linea );//lee una linea
         largo = strlen( linea );//largo de entrada
@@ -65,11 +65,8 @@ int main()
 		}
 		
 		hash_destruir( tabla );
-		destruir_split_expresion( expresion );
-		arbol_destruir_todo( raiz );
-		
-		free( linea );
-		linea = NULL;
+		arbol_expresion_destruir( raiz );
+
         return 0;
 }
 

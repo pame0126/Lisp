@@ -5,8 +5,8 @@
 #include "operaciones.h"
 
 /*Se imprimen estos valores*/
-#define false "#f"
-#define true "#t"
+#define False "#f"
+#define True "#t"
 
 /*Macros para simbolos de llaves en las funciones*/
 #define SUM "+"
