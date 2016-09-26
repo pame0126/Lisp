@@ -14,11 +14,13 @@
 #define MUL "*"
 #define DIV "quotient"
 #define MOD "modulo"
+
 #define IGUAL "="
 #define MAYOR ">"
 #define MENOR "<"
 #define MAYOR_IGUAL ">="
 #define MENOR_IGUAL "<="
+
 #define AND "and"
 #define OR "or"
 #define NOT "not"
@@ -30,7 +32,6 @@ typedef int(*f_ptr)(int,int);
 /****Punteros a funciones****/
 
 /*Operaciones aritmetica*/
-
 int (*sumar)(int,int);
 
 int (*restar)(int,int);

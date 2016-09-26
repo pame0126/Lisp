@@ -41,31 +41,32 @@ int main()
         char**expresion;
         arbol*raiz;
         int resultado;
-        
+
         printf("lisp> ");
         linea = (char*)calloc(SIZE_EXP, sizeof(char));//linea donde guarda entrada
         leerLinea( linea );//lee una linea
         largo = strlen( linea );//largo de entrada
-        
-        expresion = split_expresion( linea, largo);
-		raiz = genera_arbol_expresion( expresion );
-		
+
+        expresion = split_expresion( linea, largo );
+        raiz = genera_arbol_expresion( expresion );
         resultado = resolver_arbol_expresion( raiz->inicio, tabla );
-        
+
         /*Si NO es numero y es un operador boleano el valor de la raiz*/
         if( !f_ptr_es_numero(raiz->inicio->elemento) && f_ptr_es_operador_boleano(raiz->inicio->elemento) )
         {
-			/*Imprime #t o #f, valor boleano*/
-			printf("%s\n", f_ptr_respuesta_operador_boleano( resultado ) );
-		}
-		/*Si no, --> es numero*/
-		else
-		{
-			printf("%d\n", resultado );
-		}
-		
-		hash_destruir( tabla );
-		arbol_expresion_destruir( raiz );
+                /*Imprime #t o #f, valor boleano*/
+                printf("%s\n", f_ptr_respuesta_operador_boleano( resultado ) );
+        }
+        /*Si no, --> es numero*/
+        else
+        {
+                printf("%d\n", resultado );
+        }
+
+        free( linea );
+        linea = NULL;
+        hash_destruir( tabla );
+        arbol_expresion_destruir( raiz );
 
         return 0;
 }

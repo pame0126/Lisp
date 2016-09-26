@@ -55,10 +55,11 @@ int f_ptr_es_operador_unario(char*operador)
 /*Verifica que sea numero*/
 int f_ptr_es_numero(char*elemento)
 {
+        int i;
         int bandera = 1;
         int len = strlen( elemento );
 
-        for( int i = 0; i < len && bandera ;i++ )
+        for( i = 0; i < len && bandera ;i++ )
         {
                 bandera = ( elemento[i]-48 >= 0 && elemento[i]-48 <= 9 )?1:0;
         }

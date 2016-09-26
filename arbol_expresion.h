@@ -4,6 +4,7 @@
 #include "arbol_binario.h"
 #include "funciones.h"
 
+
 /*Divide las expresiones es arreglos*/
 char**split_expresion(char*palabra, int len);
 
@@ -34,5 +35,8 @@ void imprimir_arbol_postorden(nodo*);
 
 /*Resuelve el arbol*/
 int resolver_arbol_expresion(nodo*inicio, hash_table*operaciones);
+
+/*Destruir arbol de expresiones*/
+void arbol_expresion_destruir(arbol*raiz);
 
 #endif
