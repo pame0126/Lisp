@@ -11,7 +11,7 @@ char**split_expresion(char*palabra, int len);
 /*Libera la memoria que se uso en el split*/
 void destruir_split_expresion(char**split);
 
-/*Es una sub-operacion de las funciones: 
+/*Es una sub-operacion de las funciones:
  * - char***dividir_operandos_binario
  * - char**expresion_dividir_operador_unario
  * */
@@ -37,6 +37,6 @@ void imprimir_arbol_postorden(nodo*);
 int resolver_arbol_expresion(nodo*inicio, hash_table*operaciones);
 
 /*Destruir arbol de expresiones*/
-void arbol_expresion_destruir(arbol*raiz);
+void arbol_expresion_destruir(nodo*raiz);
 
 #endif

@@ -37,14 +37,14 @@ char*aux_split_expresion( char*expresion )
 
 /*Separa los operadores, numeros y simbolos
  * en cadenas de string.
- * 
+ *
  * Nota: - los valores 40 y 41 en ascii representan los
  *       caracteres '(' y ')' respectivamente
  *      - La cadena 'palabra' o linea como esta en menu
  *        se libera el espacio en memoria.
- * */ 
+ * */
 char**split_expresion(char*palabra, int largo)
-{       
+{
         char**respuesta = calloc( largo+1, sizeof(char*) );
         static int top;
         static int i;
@@ -62,14 +62,14 @@ char**split_expresion(char*palabra, int largo)
                 if( palabra[i] == 40 || palabra[i] == 41 )//si es uno de los parentesis
                 {
                         respuesta[top] = calloc( TAM_NUM , sizeof(char) );
-                        respuesta[top][0] = palabra[i++];	
+                        respuesta[top][0] = palabra[i++];
                         respuesta[top][1] = '\0';
                         top++;
                 }
                 else if( palabra[i] == ' ' )
                 {
                         ++i;
-				}
+                }
                 else
                 {
                         static int j;
@@ -136,7 +136,7 @@ void imprimir_split_expresion( char**split )
 }
 
 
-/*Calcula el largo del split, del arreglo de char** 
+/*Calcula el largo del split, del arreglo de char**
  * el elemento final es el salto de linea.
  * Entrada: - arreglo char* split.
  * Salida: - largo int del arrglo split.
@@ -152,7 +152,7 @@ int largo_split(char**split)
 
 /*Libera el espacio del elemento split ejecutado*/
 void destruir_split_expresion(char**split)
-{	
+{
         static int i;
         if( split == NULL )
         {
@@ -289,12 +289,12 @@ char**expresion_dividir_operador_unario(char**ecuacion)
  * */
 nodo*aux_genera_arbol_expresion(char**ecuacion)
 {
-        /*tamaño para el nuevo arreglo, con espacio extra para el 
+        /*tamaño para el nuevo arreglo, con espacio extra para el
          * final de linea*/
         static int tamano;
         tamano = strlen( ecuacion[0] ) + 1;
         //~ imprimir_split_expresion(ecuacion);
-        
+
         /*si es numero la cadena*/
         if( f_ptr_es_numero( ecuacion[0] ) )
         {
@@ -429,15 +429,14 @@ void aux_arbol_expresion_destruir(nodo*actual)
 }
 
 /*Libra todo el arbol de expresiones*/
-void arbol_expresion_destruir(arbol*raiz)
+void arbol_expresion_destruir(nodo*raiz)
 {
-        if(raiz != NULL)
-        {
-                if(raiz->inicio != NULL)
-                {
-                        aux_arbol_expresion_destruir( raiz->inicio );
-		        }
-		        free( raiz );
-		        raiz = NULL;
+        if(raiz != NULL){
+                arbol_expresion_destruir(raiz->izq);
+                arbol_expresion_destruir(raiz->der);
+                free(raiz->elemento);
+                raiz->elemento =  NULL;
+                free(raiz);
+                raiz = NULL;
         }
 }

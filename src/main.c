@@ -14,9 +14,9 @@ void leerLinea(char*linea)
 {
         char caracter;
         int i = 0;
-        
+
         scanf("%c",&caracter);
-        
+
         while(caracter != '\n' && caracter != '\0')
         {
                 *(linea + i) = caracter;
@@ -32,10 +32,10 @@ int main()
         /*Inicializar siempre los punteros a funciones,
          *  sino da error 0 de la funcion no definida*/
         f_ptr_inicializa_operacion();
-        
+
         hash_table*tabla = hash_crear();
         f_ptr_inserciones_hash(tabla);
-        
+
         char*linea;
         int largo;
         char**expresion;
@@ -66,7 +66,9 @@ int main()
         free( linea );
         linea = NULL;
         hash_destruir( tabla );
-        arbol_expresion_destruir( raiz );
+        arbol_expresion_destruir( raiz->inicio );
+        free(raiz);
+        raiz = NULL;
 
         return 0;
 }
