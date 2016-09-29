@@ -29,44 +29,41 @@ void leerLinea(char*linea)
 
 int main()
 {
+        struct hash_table*tabla = hash_crear();
+        arbol*raiz = arbol_crear();
+        char*linea;
+        char**expresion;
+        int resultado;
         /*Inicializar siempre los punteros a funciones,
          *  sino da error 0 de la funcion no definida*/
         f_ptr_inicializa_operacion();
-
-        hash_table*tabla = hash_crear();
         f_ptr_inserciones_hash(tabla);
 
-        char*linea;
-        int largo;
-        char**expresion;
-        arbol*raiz;
-        int resultado;
-
-        printf("lisp> ");
         linea = (char*)calloc(SIZE_EXP, sizeof(char));//linea donde guarda entrada
-        leerLinea( linea );//lee una linea
-        largo = strlen( linea );//largo de entrada
+        printf("Salida con q\nlisp> ");
+        leerLinea(linea);//lee una linea
 
-        expresion = split_expresion( linea, largo );
-        raiz = genera_arbol_expresion( expresion );
-        resultado = resolver_arbol_expresion( raiz->inicio, tabla );
+        /*Mientras que no escriba 'q' */
+        while (linea[0]!='q'){
+                raiz = genera_arbol_expresion(raiz, linea);
+                resultado = resolver_arbol_expresion(raiz->inicio, tabla);
 
-        /*Si NO es numero y es un operador boleano el valor de la raiz*/
-        if( !f_ptr_es_numero(raiz->inicio->elemento) && f_ptr_es_operador_boleano(raiz->inicio->elemento) )
-        {
-                /*Imprime #t o #f, valor boleano*/
-                printf("%s\n", f_ptr_respuesta_operador_boleano( resultado ) );
+                /*Si es un operador boleano la raiz*/
+                if ( f_ptr_es_operador_boleano((char*)raiz->inicio->elemento) ){
+                        /*Imprime #t o #f, valor boleano*/
+                        printf("%s\n", f_ptr_respuesta_operador_boleano(resultado));
+                }
+                /*Si no, --> es numero*/
+                else{
+                        printf("%d\n", resultado);
+                }
+                arbol_expresion_destruir(raiz->inicio);
+                printf("lisp> ");
+                leerLinea(linea);//lee una linea
         }
-        /*Si no, --> es numero*/
-        else
-        {
-                printf("%d\n", resultado );
-        }
-
-        free( linea );
+        free(linea);
         linea = NULL;
-        hash_destruir( tabla );
-        arbol_expresion_destruir( raiz->inicio );
+        hash_destruir(tabla);
         free(raiz);
         raiz = NULL;
 

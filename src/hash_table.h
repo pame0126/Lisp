@@ -6,21 +6,20 @@
 
 
 /*Estructura tabla hash*/
-typedef struct hash_table
-{
+extern struct hash_table{
          void*tabla[CASILLAS];//cambiar puntero void
          char*llaves[CASILLAS];
 }hash_table;
 
 
-hash_table*hash_crear();
+extern struct hash_table*hash_crear();
 
-void hash_destruir(hash_table*tabla);
+extern void hash_destruir(struct hash_table*tabla);
 
-int hash_codigo(char*clave);
+extern int hash_codigo(char*clave);
 
-void hash_insertar(hash_table*tabla,char*llave, void*elemento);
+extern void hash_insertar(struct hash_table*tabla,char*llave, void*elemento);
 
-void*hash_buscar(hash_table*tabla,char*llave);
+extern void*hash_buscar(struct hash_table*tabla,char*llave);
 
 #endif

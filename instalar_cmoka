@@ -1,0 +1,10 @@
+Descargar :- https://open.cryptomilk.org/projects/cmocka/files 
+$ cd ~/carpeta donde este comprimido
+$ xz -d cmocka-0.3.2.tar.xz
+$ tar vxf cmocka-0.3.2.tar
+$ cd cmocka-0.3.2
+$ mkdir build
+$ cd build
+$ cmake -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE=Release ..
+$ make
+$ sudo make install
